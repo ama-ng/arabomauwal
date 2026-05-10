@@ -1,0 +1,2416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arabo M. Auwal | Data Scientist · Engineer · AI Professional</title>
+  <meta name="description" content="Arabo M. Auwal — Data Scientist, Civil Engineer, Content Creator, Entrepreneur and AI enthusiast from Nigeria. Founder of AMA Global Inc, Amhat Creatives & AMA AI Academy." />
+  <meta name="keywords" content="Arabo Modibbo, Arabo Auwal, Data Scientist Nigeria, Civil Engineer, AI Africa, AMA Global Inc, Amhat Creatives, AMA AI Academy, Nigerian Entrepreneur" />
+  <meta name="author" content="Arabo M. Auwal" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Arabo M. Auwal | Data Scientist · Engineer · AI Professional" />
+  <meta property="og:description" content="Multi-skilled Nigerian professional — Engineer, Educator, Entrepreneur and AI innovator." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=1200" />
+  <meta property="og:url" content="https://araboauwal.com" />
+  <meta property="og:type" content="website" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Arabo M. Auwal | Data Scientist · Engineer · AI Professional" />
+  <meta name="twitter:description" content="Multi-skilled Nigerian professional — Engineer, Educator, Entrepreneur and AI innovator." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=1200" />
+  <meta name="twitter:site" content="@arabomodibbo" />
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    /* =============================================
+       CSS CUSTOM PROPERTIES & RESET
+    ============================================= */
+    :root {
+      --black: #050810;
+      --surface: #0b0f1c;
+      --surface2: #111827;
+      --surface3: #1a2236;
+      --white: #f0f4ff;
+      --white-dim: rgba(240,244,255,0.7);
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --blue-glow: rgba(37,99,235,0.25);
+      --emerald: #10b981;
+      --emerald-light: #34d399;
+      --emerald-glow: rgba(16,185,129,0.2);
+      --gold: #d4a017;
+      --gold-light: #f0c040;
+      --gold-glow: rgba(212,160,23,0.2);
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+      --text-muted: rgba(240,244,255,0.45);
+      --radius: 16px;
+      --radius-sm: 8px;
+      --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* =============================================
+       SCROLL PROGRESS BAR
+    ============================================= */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--blue), var(--emerald), var(--gold));
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    /* =============================================
+       LOADING SCREEN
+    ============================================= */
+    #loader {
+      position: fixed; inset: 0;
+      background: var(--black);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 99999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--blue-light), var(--emerald-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 2rem;
+      letter-spacing: -1px;
+    }
+    .loader-bar {
+      width: 180px; height: 2px;
+      background: var(--surface3);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--emerald));
+      border-radius: 2px;
+      animation: loaderFill 1.8s ease forwards;
+    }
+    @keyframes loaderFill { from{width:0} to{width:100%} }
+
+    /* =============================================
+       MOUSE GLOW
+    ============================================= */
+    .mouse-glow {
+      position: fixed;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      transition: left 0.12s ease, top 0.12s ease;
+    }
+
+    /* =============================================
+       FLOATING PARTICLES
+    ============================================= */
+    #particles-canvas {
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* =============================================
+       NAVBAR
+    ============================================= */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 5%;
+      height: 70px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(5,8,16,0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      transition: background var(--transition);
+    }
+    nav.scrolled { background: rgba(5,8,16,0.95); }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--white) 40%, var(--emerald-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-logo span { color: var(--emerald-light); }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: var(--white-dim);
+      text-transform: uppercase;
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--emerald-light);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      padding: 8px 20px;
+      background: var(--blue);
+      border-radius: 50px;
+      color: var(--white) !important;
+      font-weight: 500 !important;
+      font-size: 0.82rem !important;
+      transition: background var(--transition), transform var(--transition) !important;
+    }
+    .nav-cta:hover { background: var(--blue-light) !important; transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
+    .hamburger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      display: block;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 70px; left: 0; right: 0;
+      background: rgba(5,8,16,0.98);
+      backdrop-filter: blur(20px);
+      padding: 2rem 5%;
+      flex-direction: column; gap: 1.5rem;
+      z-index: 999;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 1rem; color: var(--white-dim);
+      font-weight: 500; transition: color var(--transition);
+      padding: 0.5rem 0; border-bottom: 1px solid var(--glass-border);
+    }
+    .mobile-menu a:hover { color: var(--emerald-light); }
+
+    /* =============================================
+       SECTION SHARED STYLES
+    ============================================= */
+    section { position: relative; z-index: 1; }
+    .section-pad { padding: 120px 5%; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--emerald-light);
+      background: var(--emerald-glow);
+      border: 1px solid rgba(52,211,153,0.2);
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--white-dim);
+      max-width: 520px;
+      line-height: 1.75;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--blue-light), var(--emerald-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .gold-text {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--emerald));
+      border-radius: 2px;
+      margin: 1.5rem 0;
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* =============================================
+       HERO SECTION
+    ============================================= */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(37,99,235,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(16,185,129,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 90%, rgba(212,160,23,0.05) 0%, transparent 60%);
+    }
+    .hero-grid-overlay {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .hero-left {}
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      background: var(--gold-glow);
+      border: 1px solid rgba(240,192,64,0.2);
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      animation: fadeInDown 0.8s ease both;
+    }
+    .hero-badge i { font-size: 0.65rem; }
+    @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+      animation: fadeInUp 0.8s ease 0.1s both;
+    }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    .hero-title-line {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+    .typing-wrapper {
+      font-family: var(--font-mono);
+      font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+      color: var(--emerald-light);
+    }
+    #typed-text::after {
+      content: '|';
+      animation: blink 0.7s infinite;
+      color: var(--emerald-light);
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--white-dim);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+    .hero-btns {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition);
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      color: var(--white);
+      box-shadow: 0 0 30px var(--blue-glow);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 40px rgba(37,99,235,0.4); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+    }
+    .btn-outline:hover {
+      background: var(--glass);
+      border-color: var(--emerald-light);
+      color: var(--emerald-light);
+      transform: translateY(-2px);
+    }
+    .btn-emerald {
+      background: linear-gradient(135deg, var(--emerald), var(--emerald-light));
+      color: var(--black);
+      font-weight: 600;
+    }
+    .btn-emerald:hover { transform: translateY(-3px); box-shadow: 0 8px 40px var(--emerald-glow); }
+    .hero-stats {
+      display: flex; gap: 2.5rem;
+      margin-top: 3rem;
+      animation: fadeInUp 0.8s ease 0.5s both;
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--white), var(--emerald-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    /* Hero Right */
+    .hero-right {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+    .hero-img-wrap {
+      position: relative;
+      width: 380px; height: 480px;
+    }
+    .hero-img-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--blue-glow), var(--emerald-glow));
+      border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+      filter: blur(40px);
+      animation: morphBlob 6s ease-in-out infinite alternate;
+    }
+    @keyframes morphBlob {
+      0% { border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; }
+      100% { border-radius: 60% 40% 40% 60% / 60% 60% 40% 40%; }
+    }
+    .hero-img-frame {
+      position: relative;
+      width: 320px; height: 420px;
+      margin: 0 auto;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 0 80px rgba(37,99,235,0.2), inset 0 0 30px rgba(255,255,255,0.02);
+    }
+    .hero-img-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(20%) contrast(1.1);
+    }
+    .hero-img-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(5,8,16,0.8), transparent);
+    }
+    .floating-tag {
+      position: absolute;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      padding: 10px 16px;
+      border-radius: var(--radius);
+      font-size: 0.78rem;
+      font-weight: 500;
+      display: flex; align-items: center; gap: 8px;
+      white-space: nowrap;
+    }
+    .floating-tag i { font-size: 0.9rem; }
+    .tag-ai {
+      top: 20px; right: -30px;
+      color: var(--blue-light);
+      animation: floatY 3s ease-in-out infinite;
+    }
+    .tag-ai i { color: var(--blue-light); }
+    .tag-eng {
+      bottom: 60px; left: -40px;
+      color: var(--emerald-light);
+      animation: floatY 3.5s ease-in-out infinite reverse;
+    }
+    .tag-eng i { color: var(--emerald-light); }
+    .tag-ceo {
+      top: 50%; right: -50px;
+      transform: translateY(-50%);
+      color: var(--gold-light);
+      animation: floatY 4s ease-in-out infinite;
+    }
+    .tag-ceo i { color: var(--gold-light); }
+    @keyframes floatY {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .tag-ai { animation: floatY 3s ease-in-out infinite; }
+    .tag-ceo { animation: floatYMid 3.5s ease-in-out infinite; }
+    @keyframes floatYMid {
+      0%,100% { transform: translateY(-50%); }
+      50% { transform: translateY(calc(-50% - 10px)); }
+    }
+
+    /* =============================================
+       ABOUT SECTION
+    ============================================= */
+    #about { background: var(--surface); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1300px; margin: 0 auto;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-frame {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      position: relative;
+    }
+    .about-img-frame img {
+      width: 100%; height: 440px;
+      object-fit: cover; object-position: top;
+      filter: grayscale(10%);
+      transition: filter var(--transition);
+    }
+    .about-img-frame:hover img { filter: grayscale(0%); }
+    .about-img-accent {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 120px; height: 120px;
+      background: linear-gradient(135deg, var(--blue), var(--emerald));
+      border-radius: var(--radius);
+      z-index: -1;
+      opacity: 0.4;
+    }
+    .about-chips {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+    .chip {
+      padding: 5px 14px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      font-size: 0.78rem;
+      color: var(--white-dim);
+      transition: all var(--transition);
+    }
+    .chip:hover {
+      background: var(--blue-glow);
+      border-color: var(--blue-light);
+      color: var(--white);
+    }
+    .about-right p {
+      color: var(--white-dim);
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+    .about-values {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-top: 2rem;
+    }
+    .value-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      transition: all var(--transition);
+    }
+    .value-card:hover {
+      background: rgba(37,99,235,0.06);
+      border-color: rgba(37,99,235,0.3);
+      transform: translateY(-3px);
+    }
+    .value-card i {
+      font-size: 1.3rem;
+      color: var(--emerald-light);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .value-card h4 {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .value-card p { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
+
+    /* =============================================
+       STATS / COUNTER SECTION
+    ============================================= */
+    #stats {
+      background: var(--black);
+      padding: 80px 5%;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      max-width: 1300px; margin: 0 auto;
+    }
+    .stat-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+      transition: all var(--transition);
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--emerald));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .stat-card:hover { transform: translateY(-5px); border-color: rgba(37,99,235,0.3); }
+    .stat-card:hover::before { opacity: 1; }
+    .stat-card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .stat-card-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--blue-light), var(--emerald-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-card-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    /* =============================================
+       EDUCATION SECTION
+    ============================================= */
+    #education { background: var(--surface2); }
+    .edu-timeline {
+      position: relative;
+      max-width: 900px; margin: 4rem auto 0;
+      padding-left: 2rem;
+    }
+    .edu-timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--blue), var(--emerald), transparent);
+    }
+    .edu-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2.5rem;
+    }
+    .edu-dot {
+      position: absolute;
+      left: -2.55rem;
+      top: 1.5rem;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 3px solid var(--black);
+      box-shadow: 0 0 15px var(--blue-glow);
+      transition: all var(--transition);
+    }
+    .edu-item:hover .edu-dot {
+      background: var(--emerald);
+      box-shadow: 0 0 20px var(--emerald-glow);
+      transform: scale(1.3);
+    }
+    .edu-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all var(--transition);
+    }
+    .edu-card:hover {
+      background: rgba(37,99,235,0.05);
+      border-color: rgba(37,99,235,0.25);
+      transform: translateX(6px);
+    }
+    .edu-year {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--emerald-light);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .edu-school {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .edu-degree {
+      font-size: 0.9rem;
+      color: var(--white-dim);
+      margin-bottom: 0.5rem;
+    }
+    .edu-badge {
+      display: inline-block;
+      padding: 3px 12px;
+      background: var(--emerald-glow);
+      border: 1px solid rgba(52,211,153,0.2);
+      border-radius: 50px;
+      font-size: 0.72rem;
+      color: var(--emerald-light);
+      font-family: var(--font-mono);
+    }
+    .edu-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* =============================================
+       SKILLS SECTION
+    ============================================= */
+    #skills { background: var(--black); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1300px; margin: 4rem auto 0;
+    }
+    .skill-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .skill-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--emerald));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .skill-card:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(37,99,235,0.3);
+      transform: translateY(-6px);
+    }
+    .skill-card:hover::after { transform: scaleX(1); }
+    .skill-icon-wrap {
+      width: 50px; height: 50px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.5rem;
+    }
+    .skill-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .skill-desc { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .skill-bar-wrap { background: var(--surface3); border-radius: 50px; height: 5px; overflow: hidden; }
+    .skill-bar {
+      height: 100%;
+      border-radius: 50px;
+      background: linear-gradient(90deg, var(--blue), var(--emerald));
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .skill-pct {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--emerald-light);
+      text-align: right;
+      margin-top: 0.4rem;
+    }
+
+    /* =============================================
+       EXPERIENCE SECTION
+    ============================================= */
+    #experience { background: var(--surface); }
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+      max-width: 1300px; margin: 4rem auto 0;
+    }
+    .exp-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .exp-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--blue), var(--emerald));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .exp-card:hover {
+      border-color: rgba(37,99,235,0.3);
+      transform: translateY(-5px);
+      background: rgba(37,99,235,0.04);
+    }
+    .exp-card:hover::before { opacity: 1; }
+    .exp-org {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .exp-role {
+      color: var(--emerald-light);
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      margin-bottom: 1rem;
+    }
+    .exp-desc { font-size: 0.88rem; color: var(--white-dim); line-height: 1.7; }
+    .exp-icon {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    /* =============================================
+       COMPANIES / VENTURES SECTION
+    ============================================= */
+    #companies { background: var(--surface2); }
+    .companies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+      max-width: 1300px; margin: 4rem auto 0;
+    }
+    .company-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      position: relative; overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .company-card::before {
+      content: '';
+      position: absolute; inset: -1px;
+      border-radius: 24px;
+      padding: 1px;
+      background: linear-gradient(135deg, var(--blue), var(--emerald), var(--gold));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .company-card::after {
+      content: '';
+      position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at center, rgba(37,99,235,0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .company-card:hover { transform: translateY(-8px); }
+    .company-card:hover::before { opacity: 1; }
+    .company-card:hover::after { opacity: 1; }
+    .company-logo-ring {
+      width: 70px; height: 70px;
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--glass-border);
+      position: relative; z-index: 1;
+    }
+    .ring-blue { background: rgba(37,99,235,0.1); box-shadow: 0 0 30px var(--blue-glow); }
+    .ring-emerald { background: rgba(16,185,129,0.1); box-shadow: 0 0 30px var(--emerald-glow); }
+    .ring-gold { background: rgba(212,160,23,0.1); box-shadow: 0 0 30px var(--gold-glow); }
+    .company-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.3rem;
+      position: relative; z-index: 1;
+    }
+    .company-tagline {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--emerald-light);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      position: relative; z-index: 1;
+    }
+    .company-desc {
+      font-size: 0.9rem;
+      color: var(--white-dim);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .company-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      position: relative; z-index: 1;
+    }
+    .company-tag {
+      padding: 4px 12px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      font-size: 0.72rem;
+      color: var(--white-dim);
+    }
+    .company-status {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--emerald-light);
+      margin-top: 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--emerald-light);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.4); }
+      50% { box-shadow: 0 0 0 6px rgba(52,211,153,0); }
+    }
+
+    /* =============================================
+       PROJECTS SECTION
+    ============================================= */
+    #projects { background: var(--black); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+      max-width: 1300px; margin: 4rem auto 0;
+    }
+    .project-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(37,99,235,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .project-thumb {
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-thumb-bg {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      position: relative;
+    }
+    .project-thumb-overlay {
+      position: absolute; inset: 0;
+      opacity: 0;
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem;
+      transition: opacity var(--transition);
+    }
+    .project-card:hover .project-thumb-overlay { opacity: 1; }
+    .project-body { padding: 1.5rem; }
+    .project-name {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .project-desc { font-size: 0.84rem; color: var(--white-dim); line-height: 1.65; margin-bottom: 1rem; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
+    .stack-tag {
+      padding: 3px 10px;
+      background: var(--surface3);
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      color: var(--white-dim);
+    }
+    .project-btns { display: flex; gap: 0.8rem; }
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      border-radius: 8px;
+    }
+    .btn-ghost {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--white);
+      transition: all var(--transition);
+    }
+    .btn-ghost:hover {
+      background: var(--blue-glow);
+      border-color: var(--blue-light);
+    }
+
+    /* =============================================
+       TESTIMONIALS SECTION
+    ============================================= */
+    #testimonials { background: var(--surface); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      max-width: 1300px; margin: 4rem auto 0;
+    }
+    .testimonial-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+      transition: all var(--transition);
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(37,99,235,0.25);
+    }
+    .quote-icon {
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--blue);
+      opacity: 0.3;
+      font-family: Georgia, serif;
+      margin-bottom: 0.5rem;
+    }
+    .testimonial-text {
+      font-size: 0.93rem;
+      color: var(--white-dim);
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+    .author-avatar {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--emerald));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-family: var(--font-display);
+      flex-shrink: 0;
+    }
+    .author-name {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .author-role { font-size: 0.77rem; color: var(--text-muted); }
+    .stars { color: var(--gold-light); font-size: 0.8rem; margin-bottom: 0.3rem; }
+
+    /* =============================================
+       SOCIAL SECTION
+    ============================================= */
+    #social { background: var(--surface2); }
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+      max-width: 900px; margin: 4rem auto 0;
+    }
+    .social-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      transition: all var(--transition);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.8rem;
+      cursor: pointer;
+    }
+    .social-card i {
+      font-size: 1.8rem;
+      transition: transform var(--transition);
+    }
+    .social-card:hover { transform: translateY(-6px); }
+    .social-card:hover i { transform: scale(1.2); }
+    .social-card span { font-size: 0.82rem; font-weight: 500; }
+    .sc-fb { border-color: rgba(24,119,242,0.2); }
+    .sc-fb:hover { background: rgba(24,119,242,0.08); border-color: rgba(24,119,242,0.4); }
+    .sc-fb i { color: #1877f2; }
+    .sc-tw { border-color: rgba(29,161,242,0.2); }
+    .sc-tw:hover { background: rgba(29,161,242,0.08); border-color: rgba(29,161,242,0.4); }
+    .sc-tw i { color: #1da1f2; }
+    .sc-li { border-color: rgba(0,119,181,0.2); }
+    .sc-li:hover { background: rgba(0,119,181,0.08); border-color: rgba(0,119,181,0.4); }
+    .sc-li i { color: #0077b5; }
+    .sc-ig { border-color: rgba(225,48,108,0.2); }
+    .sc-ig:hover { background: rgba(225,48,108,0.08); border-color: rgba(225,48,108,0.4); }
+    .sc-ig i { color: #e1306c; }
+    .sc-em { border-color: rgba(37,99,235,0.2); }
+    .sc-em:hover { background: rgba(37,99,235,0.08); border-color: rgba(37,99,235,0.4); }
+    .sc-em i { color: var(--blue-light); }
+    .sc-wa { border-color: rgba(37,211,102,0.2); }
+    .sc-wa:hover { background: rgba(37,211,102,0.08); border-color: rgba(37,211,102,0.4); }
+    .sc-wa i { color: #25d366; }
+
+    /* =============================================
+       CONTACT SECTION
+    ============================================= */
+    #contact { background: var(--black); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      max-width: 1200px; margin: 4rem auto 0;
+      align-items: start;
+    }
+    .contact-info-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .contact-info-desc {
+      font-size: 0.95rem;
+      color: var(--white-dim);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    .contact-info-items { display: flex; flex-direction: column; gap: 1rem; }
+    .ci-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      color: var(--white-dim);
+      transition: all var(--transition);
+    }
+    .ci-item:hover { border-color: rgba(37,99,235,0.3); color: var(--white); }
+    .ci-item i { color: var(--emerald-light); font-size: 1rem; width: 20px; text-align: center; }
+    .contact-form {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--white-dim);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      transition: all var(--transition);
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      background: rgba(37,99,235,0.05);
+      box-shadow: 0 0 0 3px var(--blue-glow);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text-muted); }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-msg {
+      display: none;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      margin-top: 1rem;
+    }
+    .form-msg.success {
+      display: block;
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(52,211,153,0.3);
+      color: var(--emerald-light);
+    }
+    .form-msg.error {
+      display: block;
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      color: #f87171;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--blue), var(--emerald));
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 0.5rem;
+    }
+    .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,99,235,0.3); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .btn-submit .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+    .btn-submit.loading .spinner { display: block; }
+    .btn-submit.loading .btn-text { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--glass-border);
+      padding: 5rem 5% 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      max-width: 1300px; margin: 0 auto;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 1rem;
+    }
+    .footer-brand-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 300px;
+      margin-bottom: 1.5rem;
+    }
+    .footer-social { display: flex; gap: 0.8rem; }
+    .footer-social a {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      color: var(--white-dim);
+      transition: all var(--transition);
+    }
+    .footer-social a:hover {
+      background: var(--blue-glow);
+      border-color: var(--blue-light);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+    .footer-col-title {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 0.8rem; }
+    .footer-links a {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--emerald-light); }
+    .footer-contact-items { display: flex; flex-direction: column; gap: 0.8rem; }
+    .footer-contact-item {
+      display: flex; align-items: center; gap: 0.7rem;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+    .footer-contact-item i { color: var(--emerald-light); font-size: 0.85rem; }
+    .footer-bottom {
+      max-width: 1300px; margin: 0 auto;
+      padding-top: 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .footer-copy span { color: var(--emerald-light); }
+    .footer-made {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* =============================================
+       BACK TO TOP
+    ============================================= */
+    #back-to-top {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      width: 46px; height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--blue), var(--emerald));
+      border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1rem;
+      z-index: 100;
+      opacity: 0; transform: translateY(20px);
+      transition: all var(--transition);
+      box-shadow: 0 8px 24px rgba(37,99,235,0.3);
+    }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); }
+    #back-to-top:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(37,99,235,0.4); }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-right { order: -1; }
+      .hero-desc { margin: 0 auto 2.5rem; }
+      .hero-btns { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .floating-tag { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img-frame img { height: 300px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .section-pad { padding: 80px 5%; }
+      .hero-img-wrap { width: 280px; height: 360px; }
+      .hero-img-frame { width: 240px; height: 320px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .about-values { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .social-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== LOADING SCREEN ===== -->
+  <div id="loader">
+    <div class="loader-logo">AMA</div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+  </div>
+
+  <!-- ===== SCROLL PROGRESS BAR ===== -->
+  <div id="progress-bar"></div>
+
+  <!-- ===== MOUSE GLOW ===== -->
+  <div class="mouse-glow" id="mouse-glow"></div>
+
+  <!-- ===== PARTICLES CANVAS ===== -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">Arabo<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#companies">Ventures</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#education" class="mobile-link">Education</a>
+    <a href="#skills" class="mobile-link">Skills</a>
+    <a href="#experience" class="mobile-link">Experience</a>
+    <a href="#companies" class="mobile-link">Ventures</a>
+    <a href="#projects" class="mobile-link">Projects</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+
+  <!-- ===================================================
+       HERO SECTION
+  =================================================== -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <i class="fa-solid fa-circle" style="color:var(--emerald-light);font-size:0.5rem"></i>
+          Available for Opportunities
+        </div>
+        <h1 class="hero-name">
+          Arabo<br><span class="gradient-text">M. Auwal</span>
+        </h1>
+        <div class="hero-title-line">
+          <div class="typing-wrapper">
+            &gt; <span id="typed-text"></span>
+          </div>
+        </div>
+        <p class="hero-desc">
+          Multi-skilled Nigerian professional bridging engineering, AI, education, and entrepreneurship.
+          Building the future of African tech through innovation, design, and digital empowerment.
+        </p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Hire Me</a>
+          <a href="#projects" class="btn btn-outline"><i class="fa-solid fa-folder-open"></i> View Projects</a>
+          <a href="#contact" class="btn btn-emerald"><i class="fa-solid fa-comment-dots"></i> Let's Talk</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num"><span class="counter" data-target="5">0</span>+</div>
+            <div class="stat-label">Years Teaching</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num"><span class="counter" data-target="6">0</span></div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num"><span class="counter" data-target="3">0</span></div>
+            <div class="stat-label">Companies Founded</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-img-wrap">
+          <div class="hero-img-bg"></div>
+          <div class="hero-img-frame">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&h=800&fit=crop&crop=face" alt="Arabo M. Auwal — Data Scientist & Engineer" />
+            <div class="hero-img-overlay"></div>
+          </div>
+          <div class="floating-tag tag-ai">
+            <i class="fa-solid fa-brain"></i> AI Enthusiast
+          </div>
+          <div class="floating-tag tag-eng">
+            <i class="fa-solid fa-helmet-safety"></i> Civil Engineer
+          </div>
+          <div class="floating-tag tag-ceo">
+            <i class="fa-solid fa-briefcase"></i> CEO & Founder
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       ABOUT SECTION
+  =================================================== -->
+  <section id="about" class="section-pad">
+    <div class="about-grid">
+      <div class="about-img-col reveal">
+        <div class="about-img-wrap">
+          <div class="about-img-frame">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=700&fit=crop&crop=face" alt="Arabo M. Auwal" />
+          </div>
+          <div class="about-img-accent"></div>
+        </div>
+        <div class="about-chips">
+          <span class="chip">🇳🇬 Nigerian</span>
+          <span class="chip">🤖 AI Enthusiast</span>
+          <span class="chip">🏗️ Civil Engineer</span>
+          <span class="chip">🎨 Designer</span>
+          <span class="chip">📚 Educator</span>
+          <span class="chip">✍️ Content Creator</span>
+          <span class="chip">🌍 Pan-African</span>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="section-tag reveal"><i class="fa-solid fa-user-astronaut"></i> About Me</div>
+        <h2 class="section-title reveal reveal-delay-1">A Builder at the<br><span class="gradient-text">Intersection of Tech</span><br>& Humanity</h2>
+        <div class="divider reveal reveal-delay-2"></div>
+        <p class="reveal reveal-delay-2">
+          I'm <strong>Arabo M. Auwal</strong> — professionally known as Arabo Modibbo — a multi-skilled professional from Nigeria with a passion for technology, education, engineering, Islamic learning, and youth empowerment.
+        </p>
+        <p class="reveal reveal-delay-3">
+          As a Civil Engineering student at ATBU Bauchi and a diploma holder from Adamawa State Polytechnic, I bring together technical rigor and creative thinking. My work spans data science, graphic design, content creation, AI tools, and digital entrepreneurship.
+        </p>
+        <p class="reveal reveal-delay-3">
+          I believe Africa's future depends on its youth mastering modern technology. That's why I teach, create, and build — to make complex knowledge accessible to young Nigerians and Africans everywhere.
+        </p>
+        <div class="about-values reveal reveal-delay-4">
+          <div class="value-card">
+            <i class="fa-solid fa-lightbulb"></i>
+            <h4>Innovation First</h4>
+            <p>Building solutions to real African problems</p>
+          </div>
+          <div class="value-card">
+            <i class="fa-solid fa-book-open-reader"></i>
+            <h4>Lifelong Learning</h4>
+            <p>Combining engineering, AI, and Islamic wisdom</p>
+          </div>
+          <div class="value-card">
+            <i class="fa-solid fa-people-group"></i>
+            <h4>Youth Empowerment</h4>
+            <p>Teaching and uplifting the next generation</p>
+          </div>
+          <div class="value-card">
+            <i class="fa-solid fa-globe-africa"></i>
+            <h4>Pan-African Vision</h4>
+            <p>Digital transformation from Northern Nigeria</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       STATS / COUNTERS SECTION
+  =================================================== -->
+  <section id="stats">
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-card-icon">🎓</div>
+        <div class="stat-card-num"><span class="counter" data-target="500">0</span>+</div>
+        <div class="stat-card-label">Students Taught</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-1">
+        <div class="stat-card-icon">🎨</div>
+        <div class="stat-card-num"><span class="counter" data-target="200">0</span>+</div>
+        <div class="stat-card-label">Design Projects</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-2">
+        <div class="stat-card-icon">💡</div>
+        <div class="stat-card-num"><span class="counter" data-target="10">0</span>+</div>
+        <div class="stat-card-label">Skills Mastered</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-3">
+        <div class="stat-card-icon">🚀</div>
+        <div class="stat-card-num"><span class="counter" data-target="3">0</span></div>
+        <div class="stat-card-label">Companies Founded</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       EDUCATION SECTION
+  =================================================== -->
+  <section id="education" class="section-pad">
+    <div style="max-width:1300px;margin:0 auto;">
+      <div class="section-tag reveal"><i class="fa-solid fa-graduation-cap"></i> Education</div>
+      <h2 class="section-title reveal reveal-delay-1">Academic <span class="gradient-text">Journey</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2">From the classrooms of Pariya to the lecture halls of ATBU Bauchi — a lifelong pursuit of knowledge.</p>
+      <div class="edu-timeline">
+        <!-- Primary -->
+        <div class="edu-item reveal">
+          <div class="edu-dot"></div>
+          <div class="edu-card">
+            <div class="edu-icon">🏫</div>
+            <div class="edu-year">Primary Education</div>
+            <div class="edu-school">Pariya Primary School</div>
+            <div class="edu-degree">Primary School Certificate</div>
+            <div class="edu-badge">✅ Completed</div>
+          </div>
+        </div>
+        <!-- Secondary -->
+        <div class="edu-item reveal reveal-delay-1">
+          <div class="edu-dot"></div>
+          <div class="edu-card">
+            <div class="edu-icon">📚</div>
+            <div class="edu-year">Secondary Education</div>
+            <div class="edu-school">Government Secondary School Pariya</div>
+            <div class="edu-degree">West African Senior School Certificate (WASSCE)</div>
+            <div class="edu-badge">✅ Completed</div>
+          </div>
+        </div>
+        <!-- Diploma -->
+        <div class="edu-item reveal reveal-delay-2">
+          <div class="edu-dot"></div>
+          <div class="edu-card">
+            <div class="edu-icon">🏛️</div>
+            <div class="edu-year">Diploma — Adamawa State Polytechnic, Yola</div>
+            <div class="edu-school">National Diploma — Civil Engineering</div>
+            <div class="edu-degree">Adamawa State Polytechnic · Yola, Adamawa State</div>
+            <div class="edu-badge" style="background:rgba(212,160,23,0.1);border-color:rgba(240,192,64,0.2);color:var(--gold-light);">⭐ Upper Credit</div>
+          </div>
+        </div>
+        <!-- University -->
+        <div class="edu-item reveal reveal-delay-3">
+          <div class="edu-dot" style="background:var(--gold);box-shadow:0 0 15px var(--gold-glow)"></div>
+          <div class="edu-card" style="border-color:rgba(212,160,23,0.15)">
+            <div class="edu-icon">🎓</div>
+            <div class="edu-year">University — Current</div>
+            <div class="edu-school">Abubakar Tafawa Balewa University (ATBU), Bauchi</div>
+            <div class="edu-degree">B.Eng Civil Engineering · In Progress</div>
+            <div class="edu-badge" style="background:rgba(212,160,23,0.1);border-color:rgba(240,192,64,0.2);color:var(--gold-light);">🔄 In Progress</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       SKILLS SECTION
+  =================================================== -->
+  <section id="skills" class="section-pad">
+    <div style="max-width:1300px;margin:0 auto;">
+      <div class="section-tag reveal"><i class="fa-solid fa-wand-magic-sparkles"></i> Expertise</div>
+      <h2 class="section-title reveal reveal-delay-1">Skills &amp; <span class="gradient-text">Capabilities</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2">A diverse toolkit built across years of hands-on work, teaching, and continuous learning.</p>
+      <div class="skills-grid">
+        <!-- Skill cards -->
+        <div class="skill-card reveal" data-delay="0">
+          <div class="skill-icon-wrap" style="background:rgba(37,99,235,0.1)"><i class="fa-solid fa-chart-line" style="color:var(--blue-light)"></i></div>
+          <div class="skill-name">Data Science</div>
+          <div class="skill-desc">Python, data analysis, visualization and machine learning fundamentals</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="78"></div></div>
+          <div class="skill-pct">78%</div>
+        </div>
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-icon-wrap" style="background:rgba(236,72,153,0.1)"><i class="fa-solid fa-palette" style="color:#ec4899"></i></div>
+          <div class="skill-name">Graphic Design</div>
+          <div class="skill-desc">Canva, Adobe tools, brand identity, promotional media and visual storytelling</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="90"></div></div>
+          <div class="skill-pct">90%</div>
+        </div>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-icon-wrap" style="background:rgba(16,185,129,0.1)"><i class="fa-solid fa-video" style="color:var(--emerald-light)"></i></div>
+          <div class="skill-name">Content Creation</div>
+          <div class="skill-desc">Short-form video, educational content, scripting and digital storytelling</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="85"></div></div>
+          <div class="skill-pct">85%</div>
+        </div>
+        <div class="skill-card reveal reveal-delay-3">
+          <div class="skill-icon-wrap" style="background:rgba(245,158,11,0.1)"><i class="fa-solid fa-helmet-safety" style="color:#f59e0b"></i></div>
+          <div class="skill-name">Civil Engineering</div>
+          <div class="skill-desc">Structural design, AutoCAD, material science and construction principles</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="75"></div></div>
+          <div class="skill-pct">75%</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon-wrap" style="background:rgba(139,92,246,0.1)"><i class="fa-solid fa-chalkboard-user" style="color:#8b5cf6"></i></div>
+          <div class="skill-name">Teaching</div>
+          <div class="skill-desc">Curriculum design, classroom management, mentorship and student engagement</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="92"></div></div>
+          <div class="skill-pct">92%</div>
+        </div>
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-icon-wrap" style="background:rgba(37,99,235,0.1)"><i class="fa-solid fa-robot" style="color:var(--blue-light)"></i></div>
+          <div class="skill-name">AI Tools</div>
+          <div class="skill-desc">ChatGPT, Claude, Midjourney, prompt engineering and AI-powered workflows</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="82"></div></div>
+          <div class="skill-pct">82%</div>
+        </div>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-icon-wrap" style="background:rgba(14,165,233,0.1)"><i class="fa-brands fa-instagram" style="color:#0ea5e9"></i></div>
+          <div class="skill-name">Social Media Management</div>
+          <div class="skill-desc">Strategy, scheduling, analytics and audience growth across platforms</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="88"></div></div>
+          <div class="skill-pct">88%</div>
+        </div>
+        <div class="skill-card reveal reveal-delay-3">
+          <div class="skill-icon-wrap" style="background:rgba(212,160,23,0.1)"><i class="fa-solid fa-layer-group" style="color:var(--gold-light)"></i></div>
+          <div class="skill-name">Branding & UI/UX</div>
+          <div class="skill-desc">Brand identity systems, UI concepts, user experience and visual hierarchy</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="80"></div></div>
+          <div class="skill-pct">80%</div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon-wrap" style="background:rgba(16,185,129,0.1)"><i class="fa-solid fa-code" style="color:var(--emerald-light)"></i></div>
+          <div class="skill-name">Web Development</div>
+          <div class="skill-desc">HTML, CSS, JavaScript, Python and building functional web applications</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="70"></div></div>
+          <div class="skill-pct">70%</div>
+        </div>
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-icon-wrap" style="background:rgba(239,68,68,0.1)"><i class="fa-solid fa-bullhorn" style="color:#ef4444"></i></div>
+          <div class="skill-name">Digital Marketing</div>
+          <div class="skill-desc">Campaign planning, audience targeting, copywriting and conversion optimization</div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="76"></div></div>
+          <div class="skill-pct">76%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       EXPERIENCE SECTION
+  =================================================== -->
+  <section id="experience" class="section-pad">
+    <div style="max-width:1300px;margin:0 auto;">
+      <div class="section-tag reveal"><i class="fa-solid fa-briefcase"></i> Work History</div>
+      <h2 class="section-title reveal reveal-delay-1">Professional <span class="gradient-text">Experience</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2">Hands-on experience across education, hospitality and professional training.</p>
+      <div class="exp-grid">
+        <div class="exp-card reveal">
+          <div class="exp-icon">🏫</div>
+          <div class="exp-org">Pariya Academy</div>
+          <div class="exp-role">Teacher · Full-time</div>
+          <div class="exp-desc">
+            Delivered comprehensive instruction to students across multiple subjects. Designed lesson plans, managed classroom environments and mentored students towards academic excellence. Played a key role in building a positive learning culture within the institution.
+          </div>
+        </div>
+        <div class="exp-card reveal reveal-delay-1">
+          <div class="exp-icon">🏆</div>
+          <div class="exp-org">Victorious International Academy</div>
+          <div class="exp-role">Teacher · Full-time</div>
+          <div class="exp-desc">
+            Taught and guided students through rigorous academic programs at an international-standard institution. Leveraged creative teaching methodologies to improve learning outcomes and student engagement across different age groups.
+          </div>
+        </div>
+        <div class="exp-card reveal reveal-delay-2">
+          <div class="exp-icon">🏨</div>
+          <div class="exp-org">Madugu Rock View Hotel</div>
+          <div class="exp-role">IT Trainee · Industrial Training (SIWES)</div>
+          <div class="exp-desc">
+            Completed the Students Industrial Work Experience Scheme (SIWES) as an IT Trainee. Gained practical exposure to hospitality management systems, digital operations, and professional workplace environments. Applied technical knowledge in a real-world commercial setting.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       COMPANIES / VENTURES SECTION
+  =================================================== -->
+  <section id="companies" class="section-pad">
+    <div style="max-width:1300px;margin:0 auto;">
+      <div class="section-tag reveal"><i class="fa-solid fa-building-columns"></i> My Ventures</div>
+      <h2 class="section-title reveal reveal-delay-1">Building the<br><span class="gradient-text">Future</span> <span class="gold-text">of Africa</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2">Three ambitious companies at the frontier of technology, creativity and education in Africa.</p>
+      <div class="companies-grid">
+        <!-- AMA Global Inc -->
+        <div class="company-card reveal">
+          <div class="company-logo-ring ring-blue">
+            <span>🌐</span>
+          </div>
+          <div class="company-name">AMA <span class="gradient-text">Global Inc</span></div>
+          <div class="company-tagline">Technology · Innovation · AI Solutions</div>
+          <div class="company-desc">
+            A future-driven technology and innovation company building AI solutions, driving digital transformation, developing software systems and delivering modern technological services across Africa and beyond. AMA Global Inc is the umbrella for Arabo's entrepreneurial vision.
+          </div>
+          <div class="company-tags">
+            <span class="company-tag">🤖 AI Solutions</span>
+            <span class="company-tag">💻 Software Dev</span>
+            <span class="company-tag">📊 Digital Transformation</span>
+            <span class="company-tag">🔬 Innovation</span>
+          </div>
+          <div class="company-status"><div class="status-dot"></div> Launching Soon</div>
+        </div>
+        <!-- Amhat Creatives -->
+        <div class="company-card reveal reveal-delay-1">
+          <div class="company-logo-ring ring-emerald">
+            <span>🎨</span>
+          </div>
+          <div class="company-name">Amhat <span class="gradient-text">Creatives</span></div>
+          <div class="company-tagline">Creative Media · Branding · Design</div>
+          <div class="company-desc">
+            A premier creative media and branding agency specializing in graphic design, content creation, digital branding, social media visuals, promotional media and creative storytelling. Amhat Creatives helps brands stand out in a noisy digital world with purpose-driven design.
+          </div>
+          <div class="company-tags">
+            <span class="company-tag">🎨 Graphic Design</span>
+            <span class="company-tag">📸 Content Creation</span>
+            <span class="company-tag">🏷️ Branding</span>
+            <span class="company-tag">📱 Social Media</span>
+          </div>
+          <div class="company-status"><div class="status-dot"></div> Launching Soon</div>
+        </div>
+        <!-- AMA AI Academy -->
+        <div class="company-card reveal reveal-delay-2">
+          <div class="company-logo-ring ring-gold">
+            <span>🧠</span>
+          </div>
+          <div class="company-name">AMA <span class="gold-text">AI Academy</span></div>
+          <div class="company-tagline">AI Education · Digital Skills · Africa's Future</div>
+          <div class="company-desc">
+            An AI-focused educational platform dedicated to teaching Artificial Intelligence, Data Science, Prompt Engineering, Digital Skills and tech education to African youth. AMA AI Academy is Arabo's commitment to ensuring no African child is left behind in the digital revolution.
+          </div>
+          <div class="company-tags">
+            <span class="company-tag">🤖 Artificial Intelligence</span>
+            <span class="company-tag">📊 Data Science</span>
+            <span class="company-tag">✍️ Prompt Engineering</span>
+            <span class="company-tag">🌍 African Youth</span>
+          </div>
+          <div class="company-status"><div class="status-dot"></div> Launching Soon</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       PROJECTS SECTION
+  =================================================== -->
+  <section id="projects" class="section-pad">
+    <div style="max-width:1300px;margin:0 auto;">
+      <div class="section-tag reveal"><i class="fa-solid fa-code-branch"></i> Portfolio</div>
+      <h2 class="section-title reveal reveal-delay-1">Selected <span class="gradient-text">Projects</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2">Real-world digital solutions built with purpose — from education tech to AI-powered tools.</p>
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card reveal">
+          <div class="project-thumb">
+            <div class="project-thumb-bg" style="background:linear-gradient(135deg,#0f172a,#1e3a5f)">📋</div>
+            <div class="project-thumb-overlay" style="background:rgba(37,99,235,0.7)">
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-solid fa-eye"></i> Preview</a>
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-name">Automated Report Card System</div>
+            <div class="project-desc">A web-based system that automatically generates student report cards from grade data, eliminating manual work for teachers.</div>
+            <div class="project-stack">
+              <span class="stack-tag">Python</span>
+              <span class="stack-tag">HTML/CSS</span>
+              <span class="stack-tag">JavaScript</span>
+              <span class="stack-tag">PDF.js</span>
+            </div>
+            <div class="project-btns">
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-solid fa-eye"></i> Preview</a>
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 2 -->
+        <div class="project-card reveal reveal-delay-1">
+          <div class="project-thumb">
+            <div class="project-thumb-bg" style="background:linear-gradient(135deg,#0f1f0a,#1a4020)">🗳️</div>
+            <div class="project-thumb-overlay" style="background:rgba(16,185,129,0.7)">
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-solid fa-eye"></i> Preview</a>
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-name">Political Campaign Web App</div>
+            <div class="project-desc">A professional campaign website with voter engagement tools, candidate profiles and real-time updates for Nigerian political campaigns.</div>
+            <div class="project-stack">
+              <span class="stack-tag">HTML5</span>
+              <span class="stack-tag">CSS3</span>
+              <span class="stack-tag">JavaScript</span>
+              <span class="stack-tag">Firebase</span>
+            </div>
+            <div class="project-btns">
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-solid fa-eye"></i> Preview</a>
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 3 -->
+        <div class="project-card reveal reveal-delay-2">
+          <div class="project-thumb">
+            <div class="project-thumb-bg" style="background:linear-gradient(135deg,#1a1208,#3d2c00)">☪️</div>
+            <div class="project-thumb-overlay" style="background:rgba(212,160,23,0.7)">
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-solid fa-eye"></i> Preview</a>
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-name">Islamic Inheritance Calculator</div>
+            <div class="project-desc">A Shari'a-compliant inheritance calculator (Mirath) that automatically distributes estate based on Islamic jurisprudence rules.</div>
+            <div class="project-stack">
+              <span class="stack-tag">JavaScript</span>
+              <span class="stack-tag">HTML5</span>
+              <span class="stack-tag">CSS3</span>
+              <span class="stack-tag">Islamic Fiqh Logic</span>
+            </div>
+            <div class="project-btns">
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-solid fa-eye"></i> Preview</a>
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 4 -->
+        <div class="project-card reveal">
+          <div class="project-thumb">
+            <div class="project-thumb-bg" style="background:linear-gradient(135deg,#0f0a1a,#2d1060)">🎬</div>
+            <div class="project-thumb-overlay" style="background:rgba(139,92,246,0.7)">
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-solid fa-eye"></i> Preview</a>
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-name">Video Converter Web App</div>
+            <div class="project-desc">A browser-based video format conversion tool supporting multiple formats with drag-and-drop upload and fast processing.</div>
+            <div class="project-stack">
+              <span class="stack-tag">JavaScript</span>
+              <span class="stack-tag">FFmpeg.wasm</span>
+              <span class="stack-tag">HTML5</span>
+              <span class="stack-tag">Web APIs</span>
+            </div>
+            <div class="project-btns">
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-solid fa-eye"></i> Preview</a>
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 5 -->
+        <div class="project-card reveal reveal-delay-1">
+          <div class="project-thumb">
+            <div class="project-thumb-bg" style="background:linear-gradient(135deg,#021a08,#023d18)">🐔</div>
+            <div class="project-thumb-overlay" style="background:rgba(16,185,129,0.7)">
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-solid fa-eye"></i> Preview</a>
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-name">Poultry Business Website</div>
+            <div class="project-desc">A professional e-commerce website for a local poultry farming business with product listings, order management and contact features.</div>
+            <div class="project-stack">
+              <span class="stack-tag">HTML5</span>
+              <span class="stack-tag">CSS3</span>
+              <span class="stack-tag">JavaScript</span>
+              <span class="stack-tag">WhatsApp API</span>
+            </div>
+            <div class="project-btns">
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-solid fa-eye"></i> Preview</a>
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 6 -->
+        <div class="project-card reveal reveal-delay-2">
+          <div class="project-thumb">
+            <div class="project-thumb-bg" style="background:linear-gradient(135deg,#1a0a16,#3d1040)">🤖</div>
+            <div class="project-thumb-overlay" style="background:rgba(236,72,153,0.7)">
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-solid fa-eye"></i> Preview</a>
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-name">AI Poster Designs</div>
+            <div class="project-desc">A collection of AI-generated and AI-assisted poster designs for brands, events and campaigns — merging prompt engineering with graphic design.</div>
+            <div class="project-stack">
+              <span class="stack-tag">Midjourney</span>
+              <span class="stack-tag">Canva</span>
+              <span class="stack-tag">Adobe</span>
+              <span class="stack-tag">Prompt Eng.</span>
+            </div>
+            <div class="project-btns">
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-solid fa-eye"></i> Preview</a>
+              <a href="#" class="btn btn-sm btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       TESTIMONIALS SECTION
+  =================================================== -->
+  <section id="testimonials" class="section-pad">
+    <div style="max-width:1300px;margin:0 auto;">
+      <div class="section-tag reveal"><i class="fa-solid fa-star"></i> Testimonials</div>
+      <h2 class="section-title reveal reveal-delay-1">What People <span class="gradient-text">Say</span></h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="quote-icon">"</div>
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">Arabo is one of the most dedicated educators I have ever encountered. His passion for technology and teaching is truly infectious. He makes complex concepts simple and approachable for every student.</div>
+          <div class="testimonial-author">
+            <div class="author-avatar">AM</div>
+            <div>
+              <div class="author-name">Mal. Ibrahim Modibbo</div>
+              <div class="author-role">Parent · Pariya Academy</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="quote-icon">"</div>
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">The graphic designs delivered by Arabo for our brand were beyond our expectations. Professional, creative, and delivered on time. He has a rare gift for translating ideas into stunning visuals.</div>
+          <div class="testimonial-author">
+            <div class="author-avatar">FK</div>
+            <div>
+              <div class="author-name">Fatima Kabir</div>
+              <div class="author-role">Business Owner · Adamawa</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="quote-icon">"</div>
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">Arabo's content creation skills are elite. He built our school's social media presence from scratch and grew our following significantly in just a few months. A true digital professional from Northern Nigeria.</div>
+          <div class="testimonial-author">
+            <div class="author-avatar">IB</div>
+            <div>
+              <div class="author-name">Ibrahim Bello</div>
+              <div class="author-role">Principal · Victorious Int'l Academy</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       SOCIAL MEDIA SECTION
+  =================================================== -->
+  <section id="social" class="section-pad">
+    <div style="max-width:1300px;margin:0 auto;text-align:center;">
+      <div class="section-tag reveal" style="margin:0 auto 1.5rem"><i class="fa-solid fa-share-nodes"></i> Connect</div>
+      <h2 class="section-title reveal reveal-delay-1">Find Me <span class="gradient-text">Online</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2" style="margin:0 auto 0">Follow my journey and connect across platforms.</p>
+      <div class="social-grid">
+        <a href="https://facebook.com/arabomauwal" target="_blank" rel="noopener" class="social-card sc-fb reveal">
+          <i class="fa-brands fa-facebook"></i>
+          <span>Facebook</span>
+        </a>
+        <a href="https://twitter.com/arabomodibbo" target="_blank" rel="noopener" class="social-card sc-tw reveal reveal-delay-1">
+          <i class="fa-brands fa-x-twitter"></i>
+          <span>Twitter / X</span>
+        </a>
+        <a href="https://linkedin.com/in/arabomodibbo" target="_blank" rel="noopener" class="social-card sc-li reveal reveal-delay-2">
+          <i class="fa-brands fa-linkedin"></i>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://instagram.com/arabomodibbo" target="_blank" rel="noopener" class="social-card sc-ig reveal reveal-delay-3">
+          <i class="fa-brands fa-instagram"></i>
+          <span>Instagram</span>
+        </a>
+        <a href="mailto:arabomodibbo104@gmail.com" class="social-card sc-em reveal">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Email</span>
+        </a>
+        <a href="https://wa.me/+2347037337528" target="_blank" rel="noopener" class="social-card sc-wa reveal reveal-delay-1">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       CONTACT SECTION
+  =================================================== -->
+  <section id="contact" class="section-pad">
+    <div style="max-width:1300px;margin:0 auto;">
+      <div class="section-tag reveal"><i class="fa-solid fa-paper-plane"></i> Get In Touch</div>
+      <h2 class="section-title reveal reveal-delay-1">Let's <span class="gradient-text">Work Together</span></h2>
+      <div class="contact-grid">
+        <div class="contact-left reveal">
+          <div class="contact-info-title">Ready to build something amazing?</div>
+          <div class="contact-info-desc">
+            Whether you need a graphic designer, content creator, web developer, data analyst or an AI consultant — I'm open to collaborations, projects and opportunities that create real impact.
+          </div>
+          <div class="contact-info-items">
+            <div class="ci-item"><i class="fa-solid fa-envelope"></i> arabomodibbo104@gmail.com</div>
+            <div class="ci-item"><i class="fa-brands fa-whatsapp"></i> +234 703 733 7528</div>
+            <div class="ci-item"><i class="fa-solid fa-location-dot"></i> Nigeria (Remote & On-site)</div>
+            <div class="ci-item"><i class="fa-solid fa-clock"></i> Response within 24 hours</div>
+          </div>
+        </div>
+        <div class="contact-form-wrap reveal reveal-delay-1">
+          <form class="contact-form" id="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" name="name" placeholder="John Doe" required />
+              </div>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="john@example.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Subject</label>
+              <input type="text" name="subject" placeholder="Project collaboration, hiring, etc." required />
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea name="message" placeholder="Tell me about your project or opportunity..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit" id="submit-btn">
+              <span class="btn-text"><i class="fa-solid fa-paper-plane"></i> &nbsp;Send Message</span>
+              <div class="spinner"></div>
+            </button>
+            <div class="form-msg" id="form-msg"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================
+       FOOTER
+  =================================================== -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Arabo <span class="gradient-text">M. Auwal</span></div>
+        <div class="footer-brand-desc">
+          Data Scientist · Civil Engineer · Content Creator · Entrepreneur · AI Professional. Building Africa's digital future from Northern Nigeria.
+        </div>
+        <div class="footer-social">
+          <a href="https://facebook.com/arabmauwal" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://twitter.com/arabomodibbo" target="_blank" rel="noopener" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://linkedin.com/in/arabomodibbo" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://instagram.com/arabomodibbo" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://wa.me/2347037337528" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <div class="footer-links">
+          <a href="#about">About Me</a>
+          <a href="#education">Education</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#companies">My Ventures</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-items">
+          <div class="footer-contact-item"><i class="fa-solid fa-envelope"></i> arabomodibbo104@gmail.com</div>
+          <div class="footer-contact-item"><i class="fa-brands fa-whatsapp"></i> 07037337528</div>
+          <div class="footer-contact-item"><i class="fa-solid fa-globe"></i> Nigeria (Remote)</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        Copyright &copy; 2026 <span>AMA Global Inc</span>. All Rights Reserved.
+      </div>
+      <div class="footer-made">
+        Built with <span style="color:var(--emerald-light)">&#9829;</span> by Arabo M. Auwal
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+  <!-- =============================================
+       JAVASCRIPT
+  ============================================= -->
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 2000);
+    });
+
+    // ===== PROGRESS BAR =====
+    window.addEventListener('scroll', () => {
+      const scrollTop = document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const pct = (scrollTop / docHeight) * 100;
+      document.getElementById('progress-bar').style.width = pct + '%';
+    });
+
+    // ===== MOUSE GLOW =====
+    const glow = document.getElementById('mouse-glow');
+    document.addEventListener('mousemove', e => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+
+    // ===== NAVBAR SCROLL =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+      document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 400);
+    });
+
+    // ===== HAMBURGER MENU =====
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // ===== BACK TO TOP =====
+    document.getElementById('back-to-top').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== TYPING EFFECT =====
+    const phrases = [
+      'Data Scientist',
+      'Content Creator',
+      'Graphic Designer',
+      'Civil Engineer',
+      'Teacher & Mentor',
+      'CEO & Founder',
+      'AI Enthusiast',
+      'Social Media Manager',
+    ];
+    let pi = 0, ci = 0, del = false;
+    const typedEl = document.getElementById('typed-text');
+    function type() {
+      const word = phrases[pi];
+      if (!del) {
+        typedEl.textContent = word.substring(0, ci + 1);
+        ci++;
+        if (ci === word.length) { del = true; setTimeout(type, 1600); return; }
+      } else {
+        typedEl.textContent = word.substring(0, ci - 1);
+        ci--;
+        if (ci === 0) { del = false; pi = (pi + 1) % phrases.length; }
+      }
+      setTimeout(type, del ? 60 : 90);
+    }
+    setTimeout(type, 1000);
+
+    // ===== SCROLL REVEAL =====
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // ===== ANIMATED COUNTERS =====
+    function animateCounter(el) {
+      const target = +el.dataset.target;
+      const duration = 1500;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { el.textContent = target; clearInterval(timer); }
+        else el.textContent = Math.floor(current);
+      }, 16);
+    }
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter').forEach(c => counterObs.observe(c));
+
+    // ===== SKILL BARS =====
+    const barObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target.querySelector('.skill-bar');
+          if (bar) {
+            setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 200);
+          }
+          barObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.skill-card').forEach(c => barObs.observe(c));
+
+    // ===== CONTACT FORM =====
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formMsg = document.getElementById('form-msg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.classList.add('loading');
+      submitBtn.disabled = true;
+      formMsg.className = 'form-msg';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        if (res.ok) {
+          formMsg.className = 'form-msg success';
+          formMsg.innerHTML = '<i class="fa-solid fa-circle-check"></i> &nbsp;Message sent successfully! I\'ll get back to you within 24 hours.';
+          form.reset();
+        } else {
+          throw new Error('Server error');
+        }
+      } catch {
+        formMsg.className = 'form-msg error';
+        formMsg.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> &nbsp;Something went wrong. Please email me directly at arabomodibbo104@gmail.com';
+      } finally {
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+      }
+    });
+
+    // ===== PARTICLES =====
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 1.5 + 0.3;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.opacity = Math.random() * 0.5 + 0.1;
+        const colors = ['99,179,237', '52,211,153', '212,160,23'];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+      }
+      update() {
+        this.x += this.speedX; this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color},${this.opacity})`;
+        ctx.fill();
+      }
+    }
+    for (let i = 0; i < 80; i++) particles.push(new Particle());
+    function animParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animParticles);
+    }
+    animParticles();
+  </script>
+</body>
+</html>
